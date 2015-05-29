@@ -1,3 +1,5 @@
+// Nome: Rafael Wemerson Soares Porto
+// Matricula: 2014026046
 function coeficientes = polinomio_interpolador(n, x, y)
 // Objetivo : Calcular os coeficientes do polinômio interpolador de grau n
 //
@@ -35,6 +37,7 @@ endfunction
 N = input('');
 N = int(N);
 
+// recebe pontos (x, y) por linha
 for i = 1:N+1
     X(i) = input('');
     Y(i) = input('');
