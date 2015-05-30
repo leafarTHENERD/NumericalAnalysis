@@ -12,19 +12,24 @@ function jn = matriz_jacobi_grau_n(N)
 endfunction
 
 function [t, w] = calcula_abscissas_T_pesos_W(matriz_jacobi, n)
-	autovalores = spec(matriz_jacobi);
+	[autovetores, autovalores] = spec(matriz_jacobi);
 	t = zeros(n);
 	w = zeros(n);
+
+	for i=1:n
+		t(i) = autovalores(i,i);
+		w(i) = 2 * (autovetores(1, i))^2;
+	end
 endfunction
 
 function integral = quadratura_gauss_legendre(fx, n, a, b)
 	matrizJacobiana = matriz_jacobi_grau_n(n);
-	[w, t] = calcula_abscissas_T_pesos_W(matrizJacobiana, n);
+	[t, w] = calcula_abscissas_T_pesos_W(matrizJacobiana, n);
 
 	soma = 0
 	for i=1:n
 		xi = a + ((( t(i) + 1)*( b - a )) / 2);
-		soma = soma + w(i) * fx(xi);
+		soma = soma + w(i) * horner(fx,xi);
 	end
 
 	integral = return(soma*( b - a) / 2);
