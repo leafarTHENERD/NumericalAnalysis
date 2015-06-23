@@ -21,13 +21,13 @@ grau = mfscanf(poli_file,"%d");
 while grau
     coefs = zeros(grau+1);
     for i=1:grau+1
-        coefs(i) = mfscanf(poli_file,"%d");
+        coefs(i) = mfscanf(poli_file,"%f");
     end
 
     zero = zeros_do_polinomio(grau, coefs);
 
     for i=1:grau
-        mfprintf(zeros_file, "%d ",zero(i));
+        mfprintf(zeros_file, "%f ",zero(i));
     end
     mfprintf(zeros_file, "\n");
 
